@@ -75,30 +75,49 @@ public class ExpressionTree{
     right = r;
   }
 
+  /**An accessor method that returns the operator character
+  *@return char
+  */
   public char getOp(){
     return op;
   }
 
-  /* accessor method for Value, precondition is that isValue() is true.*/
+  /**accessor method for Value, precondition is that isValue() is true.
+  *@return double
+  */
   private double getValue(){
     return value;
   }
-  /* accessor method for left, precondition is that isOp() is true.*/
+  /**accessor method for left, precondition is that isOp() is true.
+  *@return ExpressionTree
+  */
   private ExpressionTree getLeft(){
     return left;
   }
-  /* accessor method for right, precondition is that isOp() is true.*/
+  /**accessor method for right, precondition is that isOp() is true.
+  *@return ExpressionTree
+  */
   private ExpressionTree getRight(){
     return right;
   }
 
+  /**A method that checks if the current ExpressionTree is an operator
+  *@return boolean
+  */
   private boolean isOp(){
     return hasChildren();
   }
+
+  /**A method that checks if the current ExpressionTree is a value
+  *@return boolean
+  */
   private boolean isValue(){
     return !hasChildren();
   }
 
+  /**A method that checks if an ExpressionTree has left or right branches
+  *@return boolean
+  */
   private boolean hasChildren(){
     return left != null && right != null;
   }
