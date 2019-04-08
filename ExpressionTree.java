@@ -1,52 +1,57 @@
 public class ExpressionTree{
 
-  /*return the expression as an infix notation string with parenthesis*/
+  /**return the expression as an infix notation string with parenthesis
+  *@return String
   /* The sample tree would be: "(3 + (2 * 10))"     */
   public String toString(){
-    String result = "";
-    if(isOp()){
+    if(isOp()){ //if there are more values
       String left = getLeft().toString();
       String right = getRight().toString();
-      result += "(" + left + " " + getOp() + " " + right + ")";
-      return result;
-    }else return "" + getValue();
+      return "(" + left + " " + getOp() + " " + right + ")";
+    }else return "" + getValue(); //if it's a single value
   }
 
-  /*return the expression as a postfix notation string without parenthesis*/
+  /**return the expression as a postfix notation string without parenthesis
+  *@return String
   /* The sample tree would be: "3 2 10 * +"     */
   public String toStringPostfix(){
-    String result = "";
-    if(isOp()){
+    if(isOp()){ //if there are more values
       String left = getLeft().toStringPostfix();
       String right = getRight().toStringPostfix();
-      result += "" + left + " " + right + " " + getOp();
-      return result;
-    }else return "" + getValue();
+      return "" + left + " " + right + " " + getOp();
+    }else return "" + getValue(); //if it's a single value
   }
 
-  /*return the expression as a prefix notation string without parenthesis*/
+  /**return the expression as a prefix notation string without parenthesis
+  *@return String
   /* The sample tree would be: "+ 3 * 2 10"     */
   public String toStringPrefix(){
-    String result = "";
-    if(isOp()){
+    if(isOp()){ //if there are more values
       String left = getLeft().toStringPrefix();
       String right = getRight().toStringPrefix();
-      result += "" + getOp() + " " + left + " " + right;
-      return result;
-    }else return "" + getValue();
+      return "" + getOp() + " " + left + " " + right;
+    }else return "" + getValue(); //if it's a single value
   }
 
-  /*return the value of the specified expression tree*/
+  /**return the value of the specified expression tree
+  *@return double the value of the tree
+  */
   public double evaluate(){
-    if(isOp()){
+    if(isOp()){ //evaluate the left and right if there are more values and operations
       double left = getLeft().evaluate();
       double right = getRight().evaluate();
       return apply(getOp(), left, right);
-    }else return getValue();
+    }else return getValue(); //return if it's a single value
     }
 
-  /*use the correct operator on both a and b, and return that value*/
+  /**use the correct operator on both a and b, and return that value
+  *@param char op is the operator
+  *@param double a the first value
+  *@param double b the second value
+  *@return double the result after performing the correct operator on a and b
+  */
   private double apply(char op, double a, double b){
+    //checks to find the operator and performs it
     if(op == '+') return a + b;
     if(op == '-') return a - b;
     if(op == '*') return a * b;
